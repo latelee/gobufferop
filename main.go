@@ -74,20 +74,22 @@ func BufferWriterTest() {
     writer.Init(100);
     
     // 按数值写
-    writer.WriteUint8(0x94);
-    writer.WriteUint32(100);
-    writer.WriteUint16(0x194);
+    writer.WriteUint8(0x4c);
+    writer.WriteUint8(0x45);
+    writer.WriteUint16(100);
+    writer.WriteUint32(0x010064);
+    writer.WriteBCDS("20091107");
     
-    writer.WriteString("hello"); // 正常字符串
-    writer.WriteHexString("0a1f45"); // 十六进制字符串
+    writer.WriteString("helloworld"); // 正常字符串
+    writer.WriteBCD(99);
+
+    writer.WriteBCDS("2019");
     
     p := make([]byte, 2);
     p[0] = 0x7e;
     p[1] = 0x7f;
-    writer.WriteBuffer(p); // 字符
-
-    writer.WriteBCD(99);
-    writer.WriteBCDS("201911082307");
+    writer.WriteBuffer(p); // 原始字符
+    
     writer.Test();
 }
 
